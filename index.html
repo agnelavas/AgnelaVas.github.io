@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agnela Pearl Vas | Academic Portfolio</title>
+  <style>
+    /* CSS Reset & Variables */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #FBFBFA;
+      --surface: #FFFFFF;
+      --text-main: #171717;
+      --text-muted: #525252;
+      --border: #E5E5E0;
+      --accent: #EA580C;
+      --accent-subtle: #FFF7ED;
+      --tag-bg: #F4F4F0;
+      --tag-border: #E5E5DE;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding: 0 1rem;
+    }
+
+    /* Layout Container */
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 3.5rem 0 5rem;
+    }
+
+    /* Header / Nav */
+    header {
+      margin-bottom: 3rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2rem;
+    }
+
+    .header-tag {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+      display: inline-block;
+    }
+
+    h1 {
+      font-size: 2.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+      margin-bottom: 0.5rem;
+    }
+
+    .subheading {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+    }
+
+    nav {
+      margin-top: 1.5rem;
+      display: flex;
+      gap: 1.25rem;
+    }
+
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.15s ease;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    /* Section Styling */
+    section {
+      margin-bottom: 3.5rem;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--text-main);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.6rem;
+      margin-bottom: 1.5rem;
+    }
+
+    p {
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+
+    /* Goal Card */
+    .goal-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: 6px;
+      padding: 1.25rem 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .goal-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 0.35rem;
+    }
+
+    .goal-card p {
+      margin-bottom: 0;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    /* Activities / Projects */
+    .activities-grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .activity-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .activity-meta {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--accent);
+      margin-bottom: 0.35rem;
+    }
+
+    .activity-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 0.6rem;
+    }
+
+    .activity-description {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+      flex-grow: 1;
+    }
+
+    /* Discrete Badges */
+    .tags-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .tag {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      background-color: var(--tag-bg);
+      border: 1px solid var(--tag-border);
+      color: var(--text-muted);
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    /* Action Buttons */
+    .btn-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      width: fit-content;
+      background-color: transparent;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-decoration: none;
+      padding: 0.45rem 0.85rem;
+      border-radius: 5px;
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+
+    .btn-link:hover {
+      background-color: var(--accent);
+      color: #FFFFFF;
+    }
+
+    /* Skills Grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .skill-item {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .skill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--accent);
+    }
+
+    /* Contact Links */
+    .contact-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      font-size: 0.95rem;
+    }
+
+    .contact-label {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      min-width: 140px;
+    }
+
+    .contact-item a {
+      color: var(--accent);
+      text-decoration: none;
+      word-break: break-all;
+    }
+
+    .contact-item a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding-top: 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 640px) {
+      .container {
+        padding: 2.5rem 0 3.5rem;
+      }
+
+      h1 {
+        font-size: 1.85rem;
+      }
+
+      nav {
+        flex-wrap: wrap;
+        gap: 0.85rem;
+      }
+
+      .contact-item {
+        flex-direction: column;
+        gap: 0.2rem;
+      }
+
+      .contact-label {
+        min-width: auto;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <span class="header-tag">Academic Portfolio</span>
+      <h1>Agnela Pearl Vas</h1>
+      <p class="subheading">3rd-Semester Computer Science and Engineering Student</p>
+      <nav aria-label="Page navigation">
+        <a href="#about">About</a>
+        <a href="#activities">Activities</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <!-- About Section -->
+    <section id="about">
+      <h2>About</h2>
+      <p>
+        I am an undergraduate student in my third semester of Computer Science and Engineering, focusing on foundational computing systems, core data structures, algorithms, and modular software workflows. My academic work centers on low-level language mechanics, version-controlled development environments, and structured problem-solving.
+      </p>
+
+      <div class="goal-card">
+        <h3>Career &amp; Learning Goal</h3>
+        <p>
+          Master systems-level programming fundamentals, clean code architecture, and analytical problem-solving through disciplined version control practices and rigorous algorithmic challenges.
+        </p>
+      </div>
+    </section>
+
+    <!-- Projects / Activities Section -->
+    <section id="activities">
+      <h2>Projects &amp; Academic Activities</h2>
+      <div class="activities-grid">
+
+        <!-- Activity 1 -->
+        <article class="activity-card">
+          <div>
+            <div class="activity-meta">Activity 1</div>
+            <h3 class="activity-title">VS Code Setup</h3>
+            <p class="activity-description">
+              Configured a complete local C development environment within Visual Studio Code. Installed necessary compiler toolchains and extensions, configured compilation tasks, and successfully built and executed C programs.
+            </p>
+          </div>
+          <div class="tags-container">
+            <span class="tag">VS Code</span>
+            <span class="tag">C</span>
+            <span class="tag">Tooling</span>
+          </div>
+        </article>
+
+        <!-- Activity 2 -->
+        <article class="activity-card">
+          <div>
+            <div class="activity-meta">Activity 2</div>
+            <h3 class="activity-title">Git &amp; GitHub Setup</h3>
+            <p class="activity-description">
+              Learned fundamental version control principles including local repository initialization, staged commits, branching, and remote synchronization. Created and published the Hello World C repository to GitHub.
+            </p>
+          </div>
+          <div>
+            <div class="tags-container">
+              <span class="tag">Git</span>
+              <span class="tag">GitHub</span>
+              <span class="tag">Version Control</span>
+            </div>
+            <a href="https://github.com/agnelavas/Portfolio" target="_blank" rel="noopener noreferrer" class="btn-link">
+              View Repository &rarr;
+            </a>
+          </div>
+        </article>
+
+        <!-- Activity 3 -->
+        <article class="activity-card">
+          <div>
+            <div class="activity-meta">Activity 3</div>
+            <h3 class="activity-title">GitLens &amp; Live Share</h3>
+            <p class="activity-description">
+              Conducted real-time pair-programming using VS Code Live Share. Explored code provenance, commit history, and blame annotations with GitLens while collaborating on a <code>greet()</code> function and maintaining a collaborative README log.
+            </p>
+          </div>
+          <div class="tags-container">
+            <span class="tag">GitLens</span>
+            <span class="tag">Live Share</span>
+            <span class="tag">Collaboration</span>
+          </div>
+        </article>
+
+        <!-- Activity 4 -->
+        <article class="activity-card">
+          <div>
+            <div class="activity-meta">Activity 4</div>
+            <h3 class="activity-title">LeetCode Practice Repository</h3>
+            <p class="activity-description">
+              Maintained a systematic repository cataloging data structure and algorithm solutions. Solved targeted problems covering arrays, strings, and stacks, with documentation on asymptotic time and space complexity.
+            </p>
+          </div>
+          <div>
+            <div class="tags-container">
+              <span class="tag">Data Structures</span>
+              <span class="tag">Algorithms</span>
+              <span class="tag">Complexity Analysis</span>
+            </div>
+            <a href="https://github.com/agnelavas/Leetcode-Solutions" target="_blank" rel="noopener noreferrer" class="btn-link">
+              View Repository &rarr;
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+      <h2>Technical Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-item"><span class="skill-dot"></span>C</div>
+        <div class="skill-item"><span class="skill-dot"></span>Java</div>
+        <div class="skill-item"><span class="skill-dot"></span>Python</div>
+        <div class="skill-item"><span class="skill-dot"></span>SQL</div>
+        <div class="skill-item"><span class="skill-dot"></span>Git</div>
+        <div class="skill-item"><span class="skill-dot"></span>GitHub</div>
+        <div class="skill-item"><span class="skill-dot"></span>VS Code</div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <h2>Contact &amp; Profiles</h2>
+      <ul class="contact-list">
+        <li class="contact-item">
+          <span class="contact-label">GitHub Profile:</span>
+          <a href="https://github.com/agnelavas" target="_blank" rel="noopener noreferrer">https://github.com/agnelavas</a>
+        </li>
+        <li class="contact-item">
+          <span class="contact-label">Activity 2 Repo:</span>
+          <a href="https://github.com/agnelavas/Portfolio" target="_blank" rel="noopener noreferrer">https://github.com/agnelavas/Portfolio</a>
+        </li>
+        <li class="contact-item">
+          <span class="contact-label">Activity 4 Repo:</span>
+          <a href="https://github.com/agnelavas/Leetcode-Solutions" target="_blank" rel="noopener noreferrer">https://github.com/agnelavas/Leetcode-Solutions</a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; Agnela Pearl Vas &bull; Computer Science and Engineering Portfolio</p>
+    </footer>
+  </div>
+</body>
+</html>
